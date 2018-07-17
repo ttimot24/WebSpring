@@ -1,13 +1,16 @@
+package com.tarjani.timot.webspring;
 
-import config.AppConfig;
+
+import com.tarjani.timot.webspring.config.AppConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
-import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.

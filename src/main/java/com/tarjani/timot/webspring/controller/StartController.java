@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.tarjani.timot.webspring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
