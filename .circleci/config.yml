@@ -41,7 +41,7 @@ jobs:
       - run: mvn integration-test
 
       - store_artifacts:
-          path: /tmp/artifacts
+          path: dist
           destination: build
 
       - store_test_results:
