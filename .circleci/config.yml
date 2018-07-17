@@ -41,7 +41,7 @@ jobs:
       - run: mvn integration-test
 
       - store_artifacts:
-          path: target/*.war
+          path: target
           destination: build
 
       - store_test_results:
