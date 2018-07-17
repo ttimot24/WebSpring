@@ -1,4 +1,4 @@
-# WebSpring
+# WebSpring [![CircleCI](https://circleci.com/gh/ttimot24/WebSpring.svg?style=svg)](https://circleci.com/gh/ttimot24/WebSpring)
 Enterprise Spring App Skeleton
 
  - CircleCI
