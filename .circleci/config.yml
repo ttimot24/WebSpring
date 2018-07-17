@@ -45,4 +45,4 @@ jobs:
           destination: build
 
       - store_test_results:
-          path: test-results
+          path: target/surefire-reports
