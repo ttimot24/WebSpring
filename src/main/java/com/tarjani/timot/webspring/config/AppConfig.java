@@ -16,6 +16,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  *
@@ -24,7 +27,11 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.tarjani.timot.webspring.controller")
+@PropertySource(value = "WEB-INF/application.properties", ignoreResourceNotFound = true)
 public class AppConfig implements WebMvcConfigurer{
+    
+    @Autowired
+    Environment environment;
     
     @Bean
     public UrlBasedViewResolver getViewResovler() {
@@ -39,6 +46,11 @@ public class AppConfig implements WebMvcConfigurer{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+      // registry.addWebRequestInterceptor(new GlobalViewVariablesInterceptor(this.environment));
     }
     
 }
