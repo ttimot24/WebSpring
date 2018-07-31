@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 /**
  *
