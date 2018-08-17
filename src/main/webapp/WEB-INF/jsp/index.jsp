@@ -13,14 +13,12 @@
     </head>
 
     <body>
-        <div class="container" style="padding-top: 25px;text-align:center;">
-        <h1>WebSpring</h1><br>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
+        <div class="jumbotron" style="background-color:black">
+        <div class="container" style="padding-top: 25px;text-align:center;color:white;">
+            <h1 style="font-size:72px;">WebSpring</h1><br>
+            <a href="#" class="btn btn-warning btn-lg">Application</a>
+            <a href="http://localhost:37019/WebSpring/WelcomeWS" class="btn btn-primary btn-lg">WebService</a>
+        </div>
         </div>
     </body>
 </html>
