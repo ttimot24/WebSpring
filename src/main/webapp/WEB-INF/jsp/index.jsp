@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
     <head>
@@ -15,7 +17,7 @@
     <body>
         <div class="jumbotron" style="background-color:black">
         <div class="container" style="padding-top: 25px;text-align:center;color:white;">
-            <h1 style="font-size:72px;">WebSpring</h1><br>
+            <h1 style="font-size:72px;">${appName}</h1><br>
             <a href="#" class="btn btn-warning btn-lg">Application</a>
             <a href="http://localhost:37019/WebSpring/WelcomeWS" class="btn btn-primary btn-lg">WebService</a>
         </div>

@@ -18,7 +18,7 @@ public class StartController {
     
     @RequestMapping({"/","/index"})
     public String index(Model model) {
-        
+                
         return "index";
     }
     

@@ -11,12 +11,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestContext;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.Model;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  *
  * @author user
  */
+@WebAppConfiguration
+@ContextConfiguration(classes = {TestContext.class, WebApplicationContext.class})
 public class StartControllerTest {
     
     public StartControllerTest() {

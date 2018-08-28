@@ -5,6 +5,7 @@
  */
 package com.tarjani.timot.webspring.config;
 
+import com.tarjani.timot.webspring.interceptor.GlobalViewVariablesInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +52,7 @@ public class AppConfig implements WebMvcConfigurer{
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-      // registry.addWebRequestInterceptor(new GlobalViewVariablesInterceptor(this.environment));
+       registry.addWebRequestInterceptor(new GlobalViewVariablesInterceptor(this.environment));
     }
     
 }
