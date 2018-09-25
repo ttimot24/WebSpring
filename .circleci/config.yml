@@ -46,3 +46,5 @@ jobs:
 
       - store_test_results:
           path: target/surefire-reports
+          
+      - run: mvn javadoc:javadoc
