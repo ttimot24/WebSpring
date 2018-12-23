@@ -13,6 +13,7 @@
         <springframework.version>5.0.7.RELEASE</springframework.version>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <configFile>src/main/webapp/application.properties</configFile>
     </properties>
     
     <dependencies>
@@ -107,10 +108,13 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>4.0.3</version> 
+                <version>5.2.4</version> 
                 <executions>
                     <execution>
                         <configuration>
+                            <url>${db.url}</url>
+                            <user>${db.user}</user>
+                            <password>${db.password}</password>
                             <files>
                                 <file>${configFile}</file>
                             </files>
