@@ -31,7 +31,7 @@ public class PersistenceConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        //sessionFactory.setPackagesToScan({"com.tarjani.timot.webspring.model"});
+        sessionFactory.setPackagesToScan("com.tarjani.timot.webspring.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
  
         return sessionFactory;
