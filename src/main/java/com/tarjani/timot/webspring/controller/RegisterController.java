@@ -5,7 +5,6 @@
  */
 package com.tarjani.timot.webspring.controller;
 
-import com.tarjani.timot.webspring.dao.UsersDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author user
  */
 @Controller
-public class StartController {
-    
-    @RequestMapping({"/","/index"})
+public class RegisterController {
+ 
+    @RequestMapping({"register"})
     public String index(Model model) {
-                        
-        return "index";
+                
+        return "register";
     }
     
 }

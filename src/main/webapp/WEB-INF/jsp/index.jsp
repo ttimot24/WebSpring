@@ -1,10 +1,14 @@
 <%@include file="header.jsp" %>
 
-        <div class="jumbotron" style="background-color:black">
-            <div class="container" style="padding-top: 25px;text-align:center;color:white;">
+        <div class="jumbotron" style="background-color:black;border-radius:0px;padding-top:10px;">
+            <div class="float-right">
+            <a href="${pageContext.request.contextPath}/register" style="text-decoration:none;color:white;"><b>Register</b></a> |
+            <a href="${pageContext.request.contextPath}/login" style="text-decoration:none;color:white;"><b>Login</b></a>
+            </div>
+            <div class="container" style="padding-top: 79px;text-align:center;color:white;">
                 <h1 style="font-size:72px;">${appName}</h1><br>
                 <a href="#" class="btn btn-warning btn-lg">Application</a>
-                <a href="http://localhost:37019/WebSpring/WelcomeWS" class="btn btn-primary btn-lg">WebService</a>
+                <a href="${pageContext.request.contextPath}/WelcomeWS" class="btn btn-primary btn-lg">WebService</a>
             </div>
         </div>
             

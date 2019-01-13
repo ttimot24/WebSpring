@@ -30,9 +30,9 @@ public class PersistenceConfig {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(this.dataSource());
         sessionFactory.setPackagesToScan("com.tarjani.timot.webspring.entity");
-        sessionFactory.setHibernateProperties(hibernateProperties());
+        sessionFactory.setHibernateProperties(this.hibernateProperties());
  
         return sessionFactory;
     }
@@ -44,15 +44,15 @@ public class PersistenceConfig {
         dataSource.setUrl(env.getProperty("db.url"));
         dataSource.setUsername(env.getProperty("db.user"));
         dataSource.setPassword(env.getProperty("db.password"));
- 
+        
         return dataSource;
     }
  
     @Bean
     public PlatformTransactionManager hibernateTransactionManager() {
-        HibernateTransactionManager transactionManager
-          = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(this.sessionFactory().getObject());
+        
         return transactionManager;
     }
  
