@@ -1,6 +1,6 @@
 <%@include file="header.jsp" %>
 
-        <div class="jumbotron" style="background-color:black;border-radius:0px;padding-top:10px;">
+        <div class="jumbotron" style="background-color:black;padding-top:10px;">
             <div class="float-right">
             <a href="${pageContext.request.contextPath}/register" style="text-decoration:none;color:white;"><b>Register</b></a> |
             <a href="${pageContext.request.contextPath}/login" style="text-decoration:none;color:white;"><b>Login</b></a>

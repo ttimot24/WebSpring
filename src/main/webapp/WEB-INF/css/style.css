@@ -8,7 +8,10 @@ and open the template in the editor.
     Author     : user
 */
 
+body{
+    background-color: red;
+}
 
 .jumbotron{
-    border-radius:0px;
+    border-radius: 0px !important;
 }

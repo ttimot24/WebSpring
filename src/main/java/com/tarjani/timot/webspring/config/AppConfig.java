@@ -28,7 +28,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.tarjani.timot.webspring.controller")
+@ComponentScan({"com.tarjani.timot.webspring.controller","com.tarjani.timot.webspring.dao"})
 @PropertySource(value = "application.properties", ignoreResourceNotFound = false)
 public class AppConfig implements WebMvcConfigurer{
     
