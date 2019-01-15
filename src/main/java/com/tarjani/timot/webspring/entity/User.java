@@ -5,6 +5,7 @@
  */
 package com.tarjani.timot.webspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -30,23 +31,40 @@ public class User implements Serializable{
     @Column(name = "slug")
     private String slug;
     
+    @JsonIgnore
     @Column(name = "password")
     private String password;
     
     @Column(name = "email")
     private String email;
 
+    @Column(name = "role_id")
+    private int roleId;
+    
+    @Column(name = "visits")
+    private int visits;
+    
+    @Column(name = "image")
+    private String image;
+    
+    @Column(name = "remember_token")
+    private String rememberToken;
+    
     public User(){
     
     }
     
-    public User(Long id, String name, String username, String slug, String password, String email) {
+    public User(Long id, String name, String username, String slug, String password, String email, int role_id, int visits, String image, String remember_token) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.slug = slug;
         this.password = password;
         this.email = email;
+        this.roleId = role_id;
+        this.visits = visits;
+        this.image = image;
+        this.rememberToken = remember_token;
     }
 
     public Long getId() {
@@ -95,6 +113,38 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public void setVisits(int visits) {
+        this.visits = visits;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getRememberToken() {
+        return rememberToken;
+    }
+
+    public void setRememberToken(String rememberToken) {
+        this.rememberToken = rememberToken;
     }
 
     
