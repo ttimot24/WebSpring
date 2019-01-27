@@ -42,7 +42,7 @@ public class PersistenceConfig {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url")+"/"+env.getProperty("db.schemas")+"?serverTimezone="+env.getProperty("db.timezone"));
+        dataSource.setUrl(env.getProperty("db.url")+"/"+env.getProperty("db.schemas"));
         dataSource.setUsername(env.getProperty("db.user"));
         dataSource.setPassword(env.getProperty("db.password"));
         
