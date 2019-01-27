@@ -45,6 +45,7 @@ public class PersistenceConfig {
         dataSource.setUrl(env.getProperty("db.url")+"/"+env.getProperty("db.schemas"));
         dataSource.setUsername(env.getProperty("db.user"));
         dataSource.setPassword(env.getProperty("db.password"));
+        dataSource.addConnectionProperty("serverTimezone",env.getProperty("db.timezone"));
         
         return dataSource;
     }
