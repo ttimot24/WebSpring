@@ -31,7 +31,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 @ComponentScan({"com.tarjani.timot.webspring.controller",
                 "com.tarjani.timot.webspring.webservice",
                 "com.tarjani.timot.webspring.rest",
-                "com.tarjani.timot.webspring.dao"
+                "com.tarjani.timot.webspring.dao",
+                "com.tarjani.timot.webspring.service"
                 })
 @PropertySource(value = "application.properties", ignoreResourceNotFound = false)
 public class AppConfig implements WebMvcConfigurer{

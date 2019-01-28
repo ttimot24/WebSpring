@@ -1,5 +1,6 @@
 package com.tarjani.timot.webspring.config;
 
+import com.tarjani.timot.webspring.service.AuthUserDetailsService;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,23 +23,28 @@ public class AuthConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private DataSource dataSource;
     
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(this.dataSource)
-                .passwordEncoder(this.passwordEncoder())
-                .usersByUsernameQuery("TODO");
+    @Autowired
+    private AuthUserDetailsService authUserDetailsService;
+    
+    @Autowired
+    protected void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.authUserDetailsService)
+                .passwordEncoder(this.passwordEncoder());
     }
  
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {        
         http
-          .csrf().disable()
-          .authorizeRequests()
-          .antMatchers("/login*").permitAll()
-          .anyRequest().authenticated()
-          .and()
-          .formLogin()
-          .loginPage("/login");
+            .authorizeRequests()
+                .antMatchers("/", "/index","/api/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
     
     

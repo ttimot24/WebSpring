@@ -6,8 +6,7 @@
 package com.tarjani.timot.webspring.dao;
 
 import com.tarjani.timot.webspring.entity.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +17,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class UsersDAO extends AbstractHibernateDAO < User > {
-        
+           
     public UsersDAO(){
         this.setEntityClass(User.class);
     }
     
+	public User getByUsername(String userName) {
+		
+            List<User> userList = getCurrentSession().createQuery( "FROM " + this.getEntityClass().getName() + "WHERE username=?" )
+                    .setParameter(1, userName).list();
+            
+
+		if(!userList.isEmpty()) {
+			return (User)userList.get(0);
+		}
+            return null;
+	}
     
 }
