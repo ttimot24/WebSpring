@@ -24,8 +24,8 @@ public class UsersDAO extends AbstractHibernateDAO < User > {
     
 	public User getByUsername(String userName) {
 		
-            List<User> userList = getCurrentSession().createQuery( "FROM " + this.getEntityClass().getName() + "WHERE username=?" )
-                    .setParameter(1, userName).list();
+            List<User> userList = getCurrentSession().createQuery( "FROM " + this.getEntityClass().getSimpleName() + " WHERE username = :uname" )
+                    .setParameter("uname", userName).list();
             
 
 		if(!userList.isEmpty()) {

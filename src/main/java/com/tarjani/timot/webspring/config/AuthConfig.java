@@ -1,6 +1,7 @@
 package com.tarjani.timot.webspring.config;
 
 import com.tarjani.timot.webspring.service.AuthUserDetailsService;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,14 +21,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class AuthConfig extends WebSecurityConfigurerAdapter{
     
+    private static final Logger log = Logger.getLogger(AuthConfig.class.getName());
+    
     @Autowired
     private DataSource dataSource;
     
     @Autowired
     private AuthUserDetailsService authUserDetailsService;
     
-    @Autowired
-    protected void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {       
         auth.userDetailsService(this.authUserDetailsService)
                 .passwordEncoder(this.passwordEncoder());
     }
@@ -35,12 +38,14 @@ public class AuthConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(final HttpSecurity http) throws Exception {        
         http
+            .csrf().disable()
             .authorizeRequests()
                 .antMatchers("/", "/index","/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
+                .usernameParameter("uname").passwordParameter("pwd")
                 .permitAll()
                 .and()
             .logout()
