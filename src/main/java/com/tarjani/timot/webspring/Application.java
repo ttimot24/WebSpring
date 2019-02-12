@@ -1,7 +1,6 @@
 package com.tarjani.timot.webspring;
 
 
-import com.tarjani.timot.webspring.config.ApiAuthConfig;
 import com.tarjani.timot.webspring.config.AppConfig;
 import com.tarjani.timot.webspring.config.AuthConfig;
 import com.tarjani.timot.webspring.config.PersistenceConfig;
@@ -38,7 +37,6 @@ public class Application implements WebApplicationInitializer {
         application.register(AppConfig.class);
         application.register(PersistenceConfig.class);
         application.register(SecurityInitializer.class);
-       // application.register(ApiAuthConfig.class);
         application.register(AuthConfig.class);
         
         container.addListener(new ContextLoaderListener(application));
