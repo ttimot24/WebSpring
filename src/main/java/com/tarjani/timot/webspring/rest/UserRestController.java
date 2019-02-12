@@ -5,16 +5,23 @@
  */
 package com.tarjani.timot.webspring.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
+import com.tarjani.timot.webspring.service.AuthUserDetailsService;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.transaction.NotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +32,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping({"api/users"})
 public class UserRestController {
+    
+    private static final Logger log = Logger.getLogger(UserRestController.class.getName());
     
     @Autowired
     UsersDAO users;
@@ -43,10 +52,20 @@ public class UserRestController {
        return users.find(id);
     }
     
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    
+    @RequestMapping(value = "/register", method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void addNew() throws NotSupportedException {
-        throw new NotSupportedException();
+    public User greetingJson(HttpEntity<String> httpEntity) throws IOException {
+        String json = httpEntity.getBody();
+        
+        log.fine(json);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        User newUser = mapper.readValue(json,User.class);
+        
+        users.save(newUser);
+            
+        return newUser;
     }
     
 }

@@ -1,10 +1,11 @@
 package com.tarjani.timot.webspring;
 
 
+import com.tarjani.timot.webspring.config.ApiAuthConfig;
 import com.tarjani.timot.webspring.config.AppConfig;
 import com.tarjani.timot.webspring.config.AuthConfig;
 import com.tarjani.timot.webspring.config.PersistenceConfig;
-import com.tarjani.timot.webspring.config.SecurityInitalizer;
+import com.tarjani.timot.webspring.config.SecurityInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class Application implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext application = new AnnotationConfigWebApplicationContext();
         application.register(AppConfig.class);
         application.register(PersistenceConfig.class);
-        application.register(SecurityInitalizer.class);
+        application.register(SecurityInitializer.class);
+       // application.register(ApiAuthConfig.class);
         application.register(AuthConfig.class);
         
         container.addListener(new ContextLoaderListener(application));
