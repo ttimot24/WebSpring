@@ -26,6 +26,11 @@ jobs:
     
     steps:
       - checkout
+      
+      # install additional softwares
+      - run: 
+            name: Install additional softwares
+            command: sudo apt install -y mysql-client
 
       # Download and cache dependencies
       - restore_cache:
@@ -40,16 +45,18 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      # install mysql client
-      - run: sudo apt install -y mysql-client
       # create database 
       - run:
-          name: Mysql database
+          name: Create Mysql database
           command: mysql  -h 127.0.0.1 -u root -e "CREATE DATABASE webspringdb;"    
       # migrate database
-      - run: mvn flyway:migrate -Dflyway.user=root -Dflyway.url=jdbc:mysql://localhost:3306?serverTimezone=Europe/Budapest -Dflyway.password= -Dflyway.schemas=webspringdb
+      - run: 
+            name: Migrate database
+            command: mvn flyway:migrate -Dflyway.user=root -Dflyway.url=jdbc:mysql://localhost:3306?serverTimezone=Europe/Budapest -Dflyway.password= -Dflyway.schemas=webspringdb
       # run tests!
-      - run: mvn -X integration-test
+      - run: 
+            name: Run tests
+            command: mvn -X integration-test
 
       - store_artifacts:
           path: target
@@ -58,4 +65,6 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
           
-      - run: mvn -X javadoc:javadoc
+      - run: 
+           name: Generate JavaDoc
+           command: mvn -X javadoc:javadoc
