@@ -17,10 +17,6 @@ jobs:
         environment:
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: true
-      # create database    
-      - run:
-          name: Mysql database
-          command: mysql  -h 127.0.0.1 -u root -e "CREATE DATABASE webspringdb;"  
 
     working_directory: ~/repo
 
@@ -44,7 +40,12 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-          
+      # install mysql client
+      - run: sudo apt install -y mysql-client
+      # create database 
+      - run:
+          name: Mysql database
+          command: mysql  -h 127.0.0.1 -u root -e "CREATE DATABASE webspringdb;"    
       # migrate database
       - run: mvn flyway:migrate -Dflyway.user=root -Dflyway.url=jdbc:mysql://localhost:3306?serverTimezone=Europe/Budapest -Dflyway.password= -Dflyway.schemas=webspringdb
       # run tests!
