@@ -2,6 +2,8 @@
 Enterprise Spring App Skeleton
 
  - CircleCI
+ - Spring 5
+ - Hibernate 5
  - Bootstrap 4.1
  - Glassfish 4.2
 
