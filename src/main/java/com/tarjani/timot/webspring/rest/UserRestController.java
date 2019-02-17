@@ -6,8 +6,10 @@
 package com.tarjani.timot.webspring.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tarjani.timot.webspring.config.AuthConfig;
 import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
+import com.tarjani.timot.webspring.entity.UserRole;
 import com.tarjani.timot.webspring.service.AuthUserDetailsService;
 import java.io.IOException;
 import java.util.List;
@@ -37,33 +39,36 @@ public class UserRestController {
     
     @Autowired
     UsersDAO users;
-    
+        
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<User> users(Model model) {
                 
-        return users.findAll();
+        return this.users.findAll();
     }
     
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public User findOne(@PathVariable("id") Long id) {
-       return users.find(id);
+       return this.users.find(id);
     }
     
     
     @RequestMapping(value = "/register", method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public User greetingJson(HttpEntity<String> httpEntity) throws IOException {
+    public User greetingJson(HttpEntity<String> httpEntity, AuthConfig auth) throws IOException {
         String json = httpEntity.getBody();
         
         log.fine(json);
         
         ObjectMapper mapper = new ObjectMapper();
         User newUser = mapper.readValue(json,User.class);
+ 
+        newUser.setPassword(auth.passwordEncoder().encode(newUser.getPassword()));
+      //  newUser.setRoleId(new UserRole(2));
         
-        users.save(newUser);
+        this.users.save(newUser);
             
         return newUser;
     }
