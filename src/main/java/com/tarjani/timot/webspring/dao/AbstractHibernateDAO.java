@@ -5,9 +5,7 @@
  */
 package com.tarjani.timot.webspring.dao;
 
-import com.tarjani.timot.webspring.entity.User;
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,7 +27,6 @@ public abstract class AbstractHibernateDAO< T extends Serializable >{
    }
    
    public Class getEntityClass(){
-      //System.out.println((Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
       return this.entityClass;
    }
  
@@ -37,8 +34,7 @@ public abstract class AbstractHibernateDAO< T extends Serializable >{
       return (T) this.getCurrentSession().get( this.getEntityClass(), id );
    }
    public List< T > findAll(){
-      return getCurrentSession()
-       .createQuery( "FROM " + this.getEntityClass().getName() ).list();
+      return this.getCurrentSession().createQuery( "FROM " + this.getEntityClass().getName() ).list();
    }
  
    public void save( final T entity ){
