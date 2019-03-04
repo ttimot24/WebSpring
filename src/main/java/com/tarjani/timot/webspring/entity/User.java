@@ -7,6 +7,7 @@ package com.tarjani.timot.webspring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -152,6 +153,8 @@ public class User implements Serializable{
         this.rememberToken = rememberToken;
     }
 
-    
+    public boolean hasPermission(String permission) throws IOException{
+        return this.getRole().getRights().contains(permission.toLowerCase());
+    }
     
 }
