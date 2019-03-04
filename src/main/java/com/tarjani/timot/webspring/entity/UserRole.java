@@ -77,6 +77,10 @@ public class UserRole implements Serializable{
 
     public ArrayList<String> getRights() throws IOException {
         
+        if(this.rights==null){
+            return null;
+        }
+        
         final ObjectMapper mapper = new ObjectMapper();
 
         ArrayList<String> parsedRights = mapper.readValue(this.getRawRights(),new TypeReference<ArrayList<String>>(){});
