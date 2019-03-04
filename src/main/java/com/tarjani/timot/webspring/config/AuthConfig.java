@@ -49,6 +49,8 @@ public class AuthConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .and()
             .logout()
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/")
                 .permitAll();
     }
     

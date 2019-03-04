@@ -2,8 +2,8 @@
 
         <div class="jumbotron" style="background-color:black;padding-top:10px;">
             <div class="float-right">
-            <a href="${pageContext.request.contextPath}/register" style="text-decoration:none;color:white;"><b>Register</b></a> |
             <security:authorize access="!isAuthenticated()">
+                <a href="${pageContext.request.contextPath}/register" style="text-decoration:none;color:white;"><b>Register</b></a> |
                 <a href="${pageContext.request.contextPath}/login" style="text-decoration:none;color:white;"><b>Login</b></a>
             </security:authorize>
             <security:authorize access="isAuthenticated()">
