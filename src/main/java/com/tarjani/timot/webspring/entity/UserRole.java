@@ -23,25 +23,39 @@ import javax.persistence.Table;
  * @author user
  */
 @Entity
-@Table(name = "user_role")
+@Table(name = "user_roles")
 public class UserRole implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private int id;
     
     @Column(name="name")
     private String name;
 
     @Column(name="rights")
     private String rights;
+
+    public UserRole() {
+    }
+
+    public UserRole(int id) {
+        this.id = id;
+    }
+
+    public UserRole(int id, String name, String rights) {
+        this.id = id;
+        this.name = name;
+        this.rights = rights;
+    }
+        
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

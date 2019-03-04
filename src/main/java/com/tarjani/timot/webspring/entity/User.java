@@ -39,8 +39,9 @@ public class User implements Serializable{
     @Column(name = "email")
     private String email;
 
-    @Column(name = "role_id")
-    private int roleId;
+    @ManyToOne(optional = true)
+    @JoinColumn(name="role_id")
+    private UserRole role;
     
     @Column(name = "visits")
     private int visits;
@@ -55,14 +56,15 @@ public class User implements Serializable{
     
     }
     
-    public User(Long id, String name, String username, String slug, String password, String email, int role_id, int visits, String image, String remember_token) {
+    public User(Long id, String name, String username, String slug, String password, String email, UserRole role, int visits, String image, String remember_token) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.slug = slug;
         this.password = password;
         this.email = email;
-        this.roleId = role_id;
+      //  this.roleId = role_id;
+        this.role = role;
         this.visits = visits;
         this.image = image;
         this.rememberToken = remember_token;
@@ -118,14 +120,14 @@ public class User implements Serializable{
         this.email = email;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
-
+    
     public int getVisits() {
         return visits;
     }
