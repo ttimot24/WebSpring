@@ -33,7 +33,7 @@ public class AuthUserDetailsService implements UserDetailsService{
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         com.tarjani.timot.webspring.entity.User activeUser = userDAO.getByUsername(userName);
         
-	GrantedAuthority authority = new SimpleGrantedAuthority(/*activeUser.getRole()*/ "DUMMY");
+	GrantedAuthority authority = new SimpleGrantedAuthority(activeUser.getRole().getName());
 	UserDetails userDetails = (UserDetails)new User(activeUser.getUsername(),
 	activeUser.getPassword(), Arrays.asList(authority));
 	return userDetails;
