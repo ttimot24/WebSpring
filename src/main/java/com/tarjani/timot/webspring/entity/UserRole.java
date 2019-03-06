@@ -5,6 +5,7 @@
  */
 package com.tarjani.timot.webspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.ByteArrayOutputStream;
@@ -66,7 +67,8 @@ public class UserRole implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @JsonIgnore
     public String getRawRights() {
         return rights;
     }
@@ -99,7 +101,6 @@ public class UserRole implements Serializable{
         
         this.rights = new String(data);
     }
-    
-    
+   
     
 }

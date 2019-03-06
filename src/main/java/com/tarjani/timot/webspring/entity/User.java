@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.Normalizer;
+import java.util.Locale;
+import java.util.regex.Pattern;
 import javax.persistence.*;
 
 /**
@@ -95,8 +98,14 @@ public class User implements Serializable{
         this.username = username;
     }
 
+    @JsonProperty("slug")
     public String getSlug() {
-        return slug;
+       
+        if(this.slug==null){
+            this.slugify(this.getUsername());
+        }
+        
+        return this.slug;
     }
 
     public void setSlug(String slug) {
@@ -157,4 +166,20 @@ public class User implements Serializable{
         return this.getRole().getRights().contains(permission.toLowerCase());
     }
     
+    private String slugify(String input){
+        
+        Pattern NONLATIN = Pattern.compile("[^\\w-]");
+        Pattern WHITESPACE = Pattern.compile("[\\s]");
+        Pattern EDGESDHASHES = Pattern.compile("(^-|-$)");
+
+
+        String nowhitespace = WHITESPACE.matcher(input).replaceAll("-");
+        String normalized = Normalizer.normalize(nowhitespace, Normalizer.Form.NFD);
+        String slug = NONLATIN.matcher(normalized).replaceAll("");
+        slug = EDGESDHASHES.matcher(slug).replaceAll("");
+        return slug.toLowerCase(Locale.ENGLISH);
+        
+    }
+
+
 }
