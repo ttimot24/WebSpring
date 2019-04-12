@@ -2,6 +2,8 @@
 Enterprise Spring App Skeleton
 
  - CircleCI
+ - Sentry
+
  - Spring 5
  - Hibernate 5
  - Bootstrap 4.1
@@ -9,3 +11,5 @@ Enterprise Spring App Skeleton
 
 #### Deployed App on Heroku:
 https://webspring24.herokuapp.com/
+
+> Username & password: admin/admin
