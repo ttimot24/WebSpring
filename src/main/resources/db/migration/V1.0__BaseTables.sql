@@ -2,6 +2,15 @@
  * Author:  Timot Tarjani
  * Created: 2018.12.23.
  */
+
+CREATE TABLE `settings` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'Id',
+  `setting` varchar(255) NOT NULL COMMENT 'Key',
+  `value` varchar(4000) DEFAULT NULL COMMENT 'Value',
+  `more` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+--
 CREATE TABLE IF NOT EXISTS `user_roles` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
