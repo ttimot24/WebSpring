@@ -17,7 +17,7 @@
                 <form name="f" method="POST" action="login">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Username</label>
-                      <input type="text" name="uname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <input type="text" name="uname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
