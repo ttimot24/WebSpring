@@ -6,6 +6,7 @@
 package com.tarjani.timot.webspring.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tarjani.timot.webspring.config.AuthConfig;
 import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
@@ -92,8 +93,14 @@ public class UserRestController {
     
     @RequestMapping(value = "/delete/{id}", method = DELETE)
     @ResponseBody
-    public void delete(@PathVariable("id") Long id, AuthConfig auth) throws IOException {
+    public String delete(@PathVariable("id") Long id, AuthConfig auth) throws IOException {
         this.users.delete(this.users.find(id));
+        
+        ObjectNode responseJson = this.mapper.createObjectNode();
+        responseJson.put("code", 200);
+        responseJson.put("message", "User deleted");
+        
+        return this.mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseJson);
     } 
     
     @ControllerAdvice
