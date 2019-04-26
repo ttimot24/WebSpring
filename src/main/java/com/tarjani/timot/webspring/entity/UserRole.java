@@ -30,7 +30,7 @@ public class UserRole implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private long id;
     
     @Column(name="name")
     private String name;
@@ -41,22 +41,22 @@ public class UserRole implements Serializable{
     public UserRole() {
     }
 
-    public UserRole(int id) {
+    public UserRole(long id) {
         this.id = id;
     }
 
-    public UserRole(int id, String name, String rights) {
+    public UserRole(long id, String name, String rights) {
         this.id = id;
         this.name = name;
         this.rights = rights;
     }
         
     
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
