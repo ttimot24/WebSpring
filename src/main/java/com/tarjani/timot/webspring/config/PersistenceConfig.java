@@ -65,6 +65,8 @@ public class PersistenceConfig {
           "hibernate.hbm2ddl.auto", "create-drop");*/
         hibernateProperties.setProperty(
           "hibernate.dialect", env.getProperty("db.dialect"));
+        hibernateProperties.setProperty(
+          "hibernate.show_sql", env.getProperty("db.show_sql"));
  
         return hibernateProperties;
     }
