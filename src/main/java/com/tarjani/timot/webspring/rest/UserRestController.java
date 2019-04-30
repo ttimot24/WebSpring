@@ -52,9 +52,9 @@ public class UserRestController {
     
     @Autowired
     UserRolesDAO roles;
-         
-    
-    private ObjectMapper mapper = new ObjectMapper();
+      
+    @Autowired
+    private ObjectMapper mapper;
     
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
