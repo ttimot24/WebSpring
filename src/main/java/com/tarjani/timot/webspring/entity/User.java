@@ -181,5 +181,20 @@ public class User implements Serializable{
         
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + 
+                     ", name=" + name + 
+                 ", username=" + username + 
+                     ", slug=" + slug + 
+                 ", password=" + password + 
+                    ", email=" + email + 
+                     ", role=" + role + 
+                   ", visits=" + visits + 
+                    ", image=" + image + 
+            ", rememberToken=" + rememberToken + '}';
+    }
 
+    
+    
 }
