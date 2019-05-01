@@ -26,6 +26,16 @@
     </repositories>
     
     <dependencies>
+        <!-- <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency> -->
         <dependency> 
               <groupId>javax.servlet</groupId>
               <artifactId>jstl</artifactId> 
@@ -142,6 +152,21 @@
             <version>5.2.12.Final</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>9.0.1</version>
@@ -152,20 +177,10 @@
             <version>1.7.16</version>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-      <!--  <dependency>
             <groupId>com.codacy</groupId>
             <artifactId>codacy-coverage-reporter</artifactId>
-            <version>5.0.310</version>
-        </dependency>-->
+            <version>6.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -215,6 +230,23 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                  <execution>
+                    <id>build-classpath</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                      <goal>build-classpath</goal>
+                    </goals>
+                    <configuration>
+                      <!-- configure the plugin here -->
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
