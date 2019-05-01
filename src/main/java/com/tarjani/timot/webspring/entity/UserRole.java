@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -27,6 +28,10 @@ import javax.persistence.Table;
 @Table(name = "user_roles")
 public class UserRole implements Serializable{
 
+    @JsonIgnore
+    @Transient
+    private final ObjectMapper mapper = new ObjectMapper();
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -83,9 +88,7 @@ public class UserRole implements Serializable{
             return null;
         }
         
-        final ObjectMapper mapper = new ObjectMapper();
-
-        ArrayList<String> parsedRights = mapper.readValue(this.getRawRights(),new TypeReference<ArrayList<String>>(){});
+        ArrayList<String> parsedRights = this.mapper.readValue(this.getRawRights(),new TypeReference<ArrayList<String>>(){});
         
         return parsedRights;
     }
@@ -93,9 +96,8 @@ public class UserRole implements Serializable{
     public void setRights(final ArrayList<String> rights) throws IOException {
         
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        final ObjectMapper mapper = new ObjectMapper();
-
-        mapper.writeValue(out, rights);
+       
+        this.mapper.writeValue(out, rights);
 
         final byte[] data = out.toByteArray();
         
