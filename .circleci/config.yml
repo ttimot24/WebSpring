@@ -70,4 +70,4 @@ jobs:
            command: mvn -X javadoc:javadoc
       - run:
            name: Upload coverage report ot Codacy
-           command: mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=test -DapiToken=8e409b9fef3e49fb9f46055176dd9e76
+           command: mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=8e409b9fef3e49fb9f46055176dd9e76 -DapiToken=IdsHqWGpWNxOc9xoZPbp
