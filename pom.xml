@@ -8,6 +8,8 @@
     <packaging>war</packaging>
 
     <name>WebSpring</name>
+    <description>Enterprise Webapp Backend</description>
+    <url>https://github.com/ttimot24/WebSpring</url>
 
     <properties>
         <springframework.version>5.1.5.RELEASE</springframework.version>
@@ -228,6 +230,15 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archive>
+                        <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Build-OS>${os.name} ${os.arch} ${os.version}</Build-OS>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
               <plugin>
