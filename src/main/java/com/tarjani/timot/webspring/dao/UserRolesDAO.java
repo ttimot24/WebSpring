@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserRolesDAO extends AbstractHibernateDAO < UserRole >{
     
     public UserRolesDAO(){
-        this.setEntityClass(this.getClass());
+        this.setEntityClass(UserRole.class);
     }
     
 }

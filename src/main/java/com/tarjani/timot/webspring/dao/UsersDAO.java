@@ -19,10 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsersDAO extends AbstractHibernateDAO < User > {
            
     public UsersDAO(){
-        this.setEntityClass(this.getClass());
+        this.setEntityClass(User.class);
     }
     
-    public User getByUsername(String userName) {
+	public User getByUsername(String userName) {
 		
             List<User> userList = getCurrentSession().createQuery( "FROM " + this.getEntityClass().getSimpleName() + " WHERE username = :uname" )
                     .setParameter("uname", userName).list();
@@ -32,6 +32,6 @@ public class UsersDAO extends AbstractHibernateDAO < User > {
 			return (User)userList.get(0);
 		}
             return null;
-    }
+	}
     
 }
