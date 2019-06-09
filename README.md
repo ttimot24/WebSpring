@@ -8,9 +8,10 @@ Enterprise Spring App Skeleton
 
 ### Technology
  - Spring 5
+ - Log4J2
  - Hibernate 5
  - Bootstrap 4.1
- - Glassfish 4.2
+ - Glassfish 4.1
 
 #### Deployed App on Heroku:
 https://webspring24.herokuapp.com/
