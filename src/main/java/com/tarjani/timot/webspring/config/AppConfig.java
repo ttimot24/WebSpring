@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
  */
 @Configuration
 @EnableWebMvc
+@EnableJms
 @ComponentScan({"com.tarjani.timot.webspring.controller",
                 "com.tarjani.timot.webspring.webservice",
                 "com.tarjani.timot.webspring.rest",
@@ -53,7 +55,7 @@ public class AppConfig implements WebMvcConfigurer{
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/webapp/WEB-INF");
+        registry.addResourceHandler("/resources/**").addResourceLocations("WEB-INF/");
     }
     
     @Override
