@@ -9,12 +9,9 @@ import com.tarjani.timot.webspring.interceptor.GlobalViewVariablesInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +28,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 @Configuration
 @EnableWebMvc
 @EnableJms
-@ComponentScan({"com.tarjani.timot.webspring.controller",
-                "com.tarjani.timot.webspring.webservice",
-                "com.tarjani.timot.webspring.rest",
-                "com.tarjani.timot.webspring.dao",
-                "com.tarjani.timot.webspring.service"
-                })
+@ComponentScan({"com.tarjani.timot.webspring.*"})
 @PropertySource(value = "application.properties", ignoreResourceNotFound = false)
 public class AppConfig implements WebMvcConfigurer{
     
