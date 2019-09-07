@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jms.annotation.EnableJms;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 @Configuration
 @EnableWebMvc
 @EnableJms
+@EnableScheduling
 @ComponentScan({"com.tarjani.timot.webspring.*"})
 @PropertySource(value = "application.properties", ignoreResourceNotFound = false)
 public class AppConfig implements WebMvcConfigurer{
