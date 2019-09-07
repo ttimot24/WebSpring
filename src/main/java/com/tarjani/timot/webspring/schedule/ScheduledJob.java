@@ -19,7 +19,7 @@ public class ScheduledJob {
     
     private static final Logger log = LogManager.getLogger(ScheduledJob.class);
     
-    @Scheduled(cron ="* */10 * * * *")
+    @Scheduled(cron ="0 */15 * * * ?")
     public void run(){
         System.out.println("Scheduled job run");
         log.info("Scheduled job run");
