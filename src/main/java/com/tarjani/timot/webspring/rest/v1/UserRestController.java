@@ -86,7 +86,7 @@ public class UserRestController {
     }
     
     
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public User update(HttpEntity<String> httpEntity, @PathVariable("id") Long id, AuthConfig auth) throws IOException {
         
