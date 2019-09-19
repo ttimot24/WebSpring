@@ -103,6 +103,12 @@ public class UserRole implements Serializable{
         
         this.rights = new String(data);
     }
+
+    @Override
+    public String toString() {
+        return "UserRole{" + "mapper=" + mapper + ", id=" + id + ", name=" + name + ", rights=" + rights + '}';
+    }
    
+    
     
 }

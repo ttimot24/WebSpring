@@ -11,31 +11,18 @@ import com.tarjani.timot.webspring.config.AuthConfig;
 import com.tarjani.timot.webspring.dao.UserRolesDAO;
 import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
-import com.tarjani.timot.webspring.entity.UserRole;
-import com.tarjani.timot.webspring.service.AuthUserDetailsService;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.NotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -78,7 +65,7 @@ public class UserRestController {
     }
     
     
-    @RequestMapping(value = "/create", method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public User create(HttpEntity<String> httpEntity, AuthConfig auth) throws IOException {
         String json = httpEntity.getBody();
@@ -96,6 +83,34 @@ public class UserRestController {
         this.users.save(newUser);
             
         return newUser;
+    }
+    
+    
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public User update(HttpEntity<String> httpEntity, @PathVariable("id") Long id, AuthConfig auth) throws IOException {
+        
+        User existingUser = this.users.find(id);
+        
+        if(existingUser!=null){
+            
+            String json = httpEntity.getBody();
+        
+            log.fine(json);
+            
+            User updateUser = this.mapper.readValue(json,User.class);
+
+            existingUser.setName(updateUser.getName());
+            existingUser.setUsername(updateUser.getUsername());
+            existingUser.setEmail(updateUser.getEmail());
+            existingUser.setImage(updateUser.getImage());
+
+
+            this.users.update(existingUser);
+            
+        }
+            
+        return existingUser;
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
