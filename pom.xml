@@ -205,7 +205,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.2.4</version> 
+                <version>6.0.3</version> 
                 <executions>
                     <execution>
                         <configuration>
