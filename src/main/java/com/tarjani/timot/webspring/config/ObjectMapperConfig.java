@@ -31,7 +31,7 @@ public class ObjectMapperConfig {
     }
     
     
-    @Bean
+ /*   @Bean
     public XmlMapper xmlMapper() {
         XmlMapper mapper = new XmlMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -39,5 +39,5 @@ public class ObjectMapperConfig {
 
         return mapper;
     }
-    
+   */ 
 }
