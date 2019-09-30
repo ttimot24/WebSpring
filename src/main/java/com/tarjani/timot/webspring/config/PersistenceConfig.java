@@ -7,12 +7,11 @@ package com.tarjani.timot.webspring.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Component;
@@ -40,12 +39,15 @@ public class PersistenceConfig {
  
     @Bean
     public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
         dataSource.setUrl(env.getProperty("db.url")+"/"+env.getProperty("db.schemas"));
         dataSource.setUsername(env.getProperty("db.user"));
         dataSource.setPassword(env.getProperty("db.password"));
-        dataSource.addConnectionProperty("serverTimezone",env.getProperty("db.timezone"));
+        
+        Properties props = new Properties();
+        props.setProperty("serverTimezone",env.getProperty("db.timezone"));
+        dataSource.setConnectionProperties(props);
         
         return dataSource;
     }
