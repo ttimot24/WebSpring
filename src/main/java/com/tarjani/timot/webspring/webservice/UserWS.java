@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tarjani.timot.webspring.webservice;
 
-import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
+import com.tarjani.timot.webspring.service.UserService;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -23,14 +18,10 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 public class UserWS extends SpringBeanAutowiringSupport {
 
     @Autowired
-    UsersDAO users;
+    UserService userService;
     
-    /**
-     * This is a sample web service operation
-     */
     @WebMethod(operationName = "register")
     public String register(@WebParam(name = "name") String name, @WebParam(name = "username") String username, @WebParam(name = "password") String password, @WebParam(name = "email") String email) {
-        
         
         User user = new User();
         user.setName(name);
@@ -39,7 +30,7 @@ public class UserWS extends SpringBeanAutowiringSupport {
         user.setPassword(password);
         user.setEmail(email);
         
-        users.save(user);
+        this.userService.createUser(user);
         
         return "User " + user.getName() + " succesfully registered!";
     }
