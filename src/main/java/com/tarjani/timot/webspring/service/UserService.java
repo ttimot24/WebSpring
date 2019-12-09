@@ -54,24 +54,24 @@ public class UserService {
     
     public User updateUserById(final Long id, final User updateUser){
         
-        User existingUser = this.users.find(id);
+        User existingUser = this.getUserById(id);
         
-        if(existingUser!=null){
-            
-            existingUser.setName(updateUser.getName());
-            existingUser.setUsername(updateUser.getUsername());
-            existingUser.setEmail(updateUser.getEmail());
-            existingUser.setImage(updateUser.getImage());
+        //We don't have to check null because of optional in getUserById
+        //if(existingUser!=null){
+        existingUser.setName(updateUser.getName());
+        existingUser.setUsername(updateUser.getUsername());
+        existingUser.setEmail(updateUser.getEmail());
+        existingUser.setImage(updateUser.getImage());
 
-            this.users.update(existingUser);
+        this.users.update(existingUser);
             
-        }
+        //}
             
         return existingUser;
     }
     
     public void deleteUserById(final Long id){
-         this.users.delete(this.users.find(id));
+         this.users.delete(this.getUserById(id));
     }
     
 }
