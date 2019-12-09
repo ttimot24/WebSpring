@@ -6,6 +6,7 @@ import com.tarjani.timot.webspring.dao.UsersDAO;
 import com.tarjani.timot.webspring.entity.User;
 import com.tarjani.timot.webspring.exception.RESTException;
 import java.util.List;
+import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +34,14 @@ public class UserService {
         return this.users.findAll();
     }
     
-    public User getUserById(Long id){
+    public User getUserById(final Long id){
         
-       User user =  this.users.find(id);
-        
-       if(user==null){
-           throw new RESTException("User not found with id: "+id);
-       }
+       Optional<User> user =  Optional.ofNullable((User) this.users.find(id));
        
-       return user;
+       return user.orElseThrow(() -> new RESTException("User not found with id: "+id));
     }
     
-    public void createUser(User user){
+    public void createUser(final User user){
         
         user.setPassword(this.auth.passwordEncoder().encode(user.getPassword()));
     
@@ -55,7 +52,7 @@ public class UserService {
         this.users.save(user);
     }
     
-    public User updateUserById(Long id, User updateUser){
+    public User updateUserById(final Long id, final User updateUser){
         
         User existingUser = this.users.find(id);
         
@@ -73,7 +70,7 @@ public class UserService {
         return existingUser;
     }
     
-    public void deleteUserById(Long id){
+    public void deleteUserById(final Long id){
          this.users.delete(this.users.find(id));
     }
     
