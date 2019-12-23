@@ -199,6 +199,12 @@
           <version>2.3.0</version>
           <type>pom</type>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.2.4</version>
+            <scope>test</scope>
+        </dependency>
     <!--    <dependency>
             <groupId>com.codacy</groupId>
             <artifactId>codacy-coverage-reporter</artifactId>

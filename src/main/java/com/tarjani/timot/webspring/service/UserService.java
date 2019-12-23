@@ -22,21 +22,21 @@ public class UserService {
     private static final Logger log = LogManager.getLogger(UserService.class);    
         
     @Autowired
-    UsersDAO users;
+    UsersDAO usersDAO;
     
     @Autowired
-    UserRolesDAO roles;
+    UserRolesDAO rolesDAO;
     
     @Autowired
     AuthConfig auth;
       
     public List<User> getAllUsers(){
-        return this.users.findAll();
+        return this.usersDAO.findAll();
     }
     
     public User getUserById(final Long id){
         
-       Optional<User> user =  Optional.ofNullable((User) this.users.find(id));
+       Optional<User> user =  Optional.ofNullable((User) this.usersDAO.find(id));
        
        return user.orElseThrow(() -> new RESTException("User not found with id: "+id));
     }
@@ -46,10 +46,10 @@ public class UserService {
         user.setPassword(this.auth.passwordEncoder().encode(user.getPassword()));
     
         if(user.getRole() == null){  
-            user.setRole(this.roles.find(2));
+            user.setRole(this.rolesDAO.find(2));
         }
         
-        this.users.save(user);
+        this.usersDAO.save(user);
     }
     
     public User updateUserById(final Long id, final User updateUser){
@@ -63,7 +63,7 @@ public class UserService {
         existingUser.setEmail(updateUser.getEmail());
         existingUser.setImage(updateUser.getImage());
 
-        this.users.update(existingUser);
+        this.usersDAO.update(existingUser);
             
         //}
             
@@ -71,7 +71,31 @@ public class UserService {
     }
     
     public void deleteUserById(final Long id){
-         this.users.delete(this.getUserById(id));
+         this.usersDAO.delete(this.getUserById(id));
     }
-    
+
+    public UsersDAO getUsersDAO() {
+        return usersDAO;
+    }
+
+    public void setUsersDAO(UsersDAO usersDAO) {
+        this.usersDAO = usersDAO;
+    }
+
+    public UserRolesDAO getRolesDAO() {
+        return rolesDAO;
+    }
+
+    public void setRolesDAO(UserRolesDAO rolesDAO) {
+        this.rolesDAO = rolesDAO;
+    }
+
+    public AuthConfig getAuth() {
+        return auth;
+    }
+
+    public void setAuth(AuthConfig auth) {
+        this.auth = auth;
+    }
+
 }
