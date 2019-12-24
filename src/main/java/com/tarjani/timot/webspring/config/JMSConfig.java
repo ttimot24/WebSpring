@@ -5,7 +5,9 @@
  */
 package com.tarjani.timot.webspring.config;
 
+import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
+import javax.jms.QueueConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
@@ -18,16 +20,14 @@ import org.springframework.jms.connection.SingleConnectionFactory;
 @Configuration
 public class JMSConfig {
 
-    @Bean
-    public ConnectionFactory jmsConnectionFactory(){
-        return new SingleConnectionFactory();
-    }
+    @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
+    private ConnectionFactory defaultConnectionFactory;
     
     @Bean
     public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
         
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(this.jmsConnectionFactory());
+        factory.setConnectionFactory(this.defaultConnectionFactory);
        
         return factory;
     }
