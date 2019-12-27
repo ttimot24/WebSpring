@@ -205,6 +205,11 @@
             <version>3.2.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+          <groupId>org.jolokia</groupId>
+          <artifactId>jolokia-core</artifactId>
+          <version>1.6.2</version>
+        </dependency>
     <!--    <dependency>
             <groupId>com.codacy</groupId>
             <artifactId>codacy-coverage-reporter</artifactId>

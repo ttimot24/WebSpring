@@ -15,6 +15,7 @@ Enterprise Spring App Skeleton
  - Hibernate 5
  - Bootstrap 4.1
  - Glassfish 4.1
+ - Jolokia 1.6
 
 #### Deployed App on Heroku:
 https://webspring24.herokuapp.com/
