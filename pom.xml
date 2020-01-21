@@ -12,7 +12,7 @@
     <url>https://github.com/ttimot24/WebSpring</url>
 
     <properties>
-        <springframework.version>5.1.5.RELEASE</springframework.version>
+        <springframework.version>5.2.3.RELEASE</springframework.version>
         <springmilestones.version>5.2.0.M3</springmilestones.version>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
