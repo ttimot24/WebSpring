@@ -30,7 +30,7 @@ jobs:
       # install additional softwares
       - run: 
             name: Install additional softwares
-            command: sudo apt install -y mysql-client
+            command: sudo apt-get update && sudo apt install -y mysql-client
 
       # Download and cache dependencies
       - restore_cache:
