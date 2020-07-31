@@ -57,6 +57,10 @@ public class AppConfig implements WebMvcConfigurer{
        registry.addWebRequestInterceptor(new GlobalViewVariablesInterceptor(this.environment));
     }
     
+    public void addCorsMappings(CorsRegistry registry) {
+	    registry.addMapping("/**");
+    }
+    
     @Bean
     public HandlerExceptionResolver sentryExceptionResolver() {
         return new io.sentry.spring.SentryExceptionResolver();
