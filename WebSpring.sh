@@ -1,0 +1,1 @@
+java -jar target/dependency/webapp-runner.jar ${1} target/WebSpring-*.war ${2}
