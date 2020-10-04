@@ -21,3 +21,6 @@ Enterprise Spring App Skeleton
 https://webspring24.herokuapp.com/
 
 > Username & password: admin/admin
+
+#### Standalone run
+```java -jar target/dependency/webapp-runner.jar target/WebSpring-1.0-SNAPSHOT.war```
