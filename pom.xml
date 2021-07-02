@@ -14,7 +14,7 @@
     <properties>
         <springframework.version>5.2.8.RELEASE</springframework.version>
         <springmilestones.version>5.3.0.M1</springmilestones.version>
-        <springsecurity.version>5.3.3.RELEASE</springsecurity.version>
+        <springsecurity.version>5.3.10.RELEASE</springsecurity.version>
         <log4j.version>2.13.3</log4j.version>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
